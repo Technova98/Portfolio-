@@ -43,7 +43,7 @@ const Portfolio = () => {
       category: 'frontend',
       description: 'Modern developer portfolio with smooth animations, dark mode support, and optimized performance.',
       technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Responsive Design'],
-      liveUrl: 'https://nahom-portfolio-iota.vercel.app/',
+      liveUrl: 'https://nahom-portfolio-six.vercel.app/',
       githubUrl: 'https://github.com/Technova98/Portfolio-',
       featured: false,
       year: '2024',
