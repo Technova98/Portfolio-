@@ -13,60 +13,20 @@ import { SiTelegram } from "react-icons/si";
 import myPhoto from "../assets/nahom.png";
 
 const Hero = () => {
-  const [cvInfo, setCvInfo] = useState(null);
   const [isDownloading, setIsDownloading] = useState(false);
 
-  // Fetch CV info on component mount
-  useEffect(() => {
-    const fetchCVInfo = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/cv");
-        if (response.ok) {
-          const data = await response.json();
-          setCvInfo(data);
-        }
-      } catch (error) {
-        console.error("Error fetching CV info:", error);
-      }
-    };
-    fetchCVInfo();
-  }, []);
-
-  // Handle CV download
-  const handleDownloadCV = async (e) => {
+  // Handle CV download directly from static assets (no backend required)
+  const handleDownloadCV = (e) => {
     e.preventDefault();
     setIsDownloading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/download-cv");
-      if (!response.ok) {
-        throw new Error("Failed to download CV");
-      }
-
-      // Get the blob data
-      const blob = await response.blob();
-      
-      // Get filename from Content-Disposition header or use default
-      const contentDisposition = response.headers.get('Content-Disposition');
-      let filename = 'cv.pdf';
-      if (contentDisposition) {
-        const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
-        if (filenameMatch && filenameMatch[1]) {
-          filename = decodeURIComponent(filenameMatch[1].replace(/['"]/g, ''));
-        }
-      } else if (cvInfo?.filename) {
-        filename = cvInfo.filename;
-      }
-      
-      // Create a temporary URL and trigger download
-      const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
-      link.href = url;
-      link.download = filename;
+      link.href = "/cv.pdf";
+      link.download = "Nahom_Abebe_CV.pdf";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Error downloading CV:", error);
       alert("Failed to download CV. Please try again later.");

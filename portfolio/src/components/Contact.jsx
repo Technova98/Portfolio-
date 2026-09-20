@@ -55,28 +55,26 @@ const Contact = () => {
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
   ];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/contacts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const subject = encodeURIComponent(
+        formData.subject ? `[Portfolio] ${formData.subject}` : `[Portfolio] Message from ${formData.name}`
+      );
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
 
-      const data = await response.json();
-      if (response.ok) {
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        alert("Message sent successfully! I will get back to you soon.");
-      } else {
-        console.error("Server error:", data);
-        alert(`Failed to send message: ${data.message || "Unknown error"}`);
-      }
+      // Open email client with pre-filled details (no backend required)
+      window.location.href = `mailto:Nahummaru9@gmail.com?subject=${subject}&body=${body}`;
+
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      alert("Opening your email client to send the message! You can also reach me directly on Telegram: @Ab_nainem21");
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert(`Failed to send message: ${error.message}`);
+      console.error("Error opening email:", error);
+      alert("Could not open email client. Please email me directly at Nahummaru9@gmail.com or via Telegram @Ab_nainem21");
     } finally {
       setIsSubmitting(false);
     }

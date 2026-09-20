@@ -235,7 +235,7 @@ const SkillsModern = () => {
         level: 95,
         icon: SiReact,
         gradient: "from-cyan-400 to-blue-500",
-        url: "https://bosscloth.vercel.app",
+        url: "https://warkafurniture.vercel.app/",
         desc: "Advanced Hooks & Performance",
         tags: ["Hooks", "Context", "SSR"],
       },

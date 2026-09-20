@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, X, Star, Calendar, Users, Eye } from 'lucide-react';
 
 // Import images from assets folder
-import ecommerceImage from '../assets/boss.jpg';
+import ecommerceImage from '../assets/warka-furniture.jpg';
 import restaurantImage from '../assets/restaurant-project.png';
 import portfolioImage from '../assets/portfolio-project.jpg';
 
@@ -17,7 +17,7 @@ const Portfolio = () => {
       category: 'fullstack',
       description: 'Full-featured e-commerce solution with user authentication, product catalog, shopping cart, and secure payment integration.',
       technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Stripe API', 'Node.js'],
-      liveUrl: 'https://bosscloth.vercel.app',
+      liveUrl: 'https://warkafurniture.vercel.app/',
       githubUrl: '#',
       featured: true,
       year: '2024',
